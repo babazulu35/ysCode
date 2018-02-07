@@ -1,0 +1,238 @@
+/*=============================================
+=            HTML Main Elements            =
+=============================================*/
+
+@import url("https://use.fontawesome.com/releases/v5.0.6/css/all.css");
+html {
+    height: 100vh;
+    background: #E2E2E2;
+}
+
+html {
+    font-size: 1rem;
+}
+
+body {
+    color: #333;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1em;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+h3 {
+    font-size: 24px;
+    color: #f7f7f7;
+}
+
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #bdbdbd;
+}
+
+ ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #bdbdbd;
+}
+
+ :-ms-input-placeholder {
+    /* IE 10+ */
+    color: #bdbdbd;
+}
+
+ :-moz-placeholder {
+    /* Firefox 18- */
+    color: #bdbdbd;
+}
+
+
+/*=====  End of HTML Main Elements  ======*/
+
+
+/*=============================================
+=            Header Section            =
+=============================================*/
+
+header {
+    display: block;
+    height: 399px;
+    width: 100%;
+    background-image: url('../images/header-bg.jpg');
+    background-size: cover;
+    background-position: 0px;
+    position: relative;
+    border-bottom: 5px solid #424B4F;
+}
+
+
+/*=====  End of Header Section  ======*/
+
+
+/*=============================================
+=            Page Layout            =
+=============================================*/
+
+.l-container {
+    max-width: 1440px;
+    width: 100%;
+    margin: auto;
+}
+
+.l-sub-content {
+    display: table;
+    width: 100%;
+    height: 100px;
+    vertical-align: middle;
+    background: #424B4F;
+}
+
+.l-content__main {
+    background: #f7f7f7;
+    padding: .5rem 1rem;
+    height: 100%;
+}
+
+
+/*=====  End of Page Layout  ======*/
+
+
+/*=============================================
+=            Form Elements            =
+=============================================*/
+
+
+/*=====  End of Form Elements  ======*/
+
+
+/*=============================================
+=            App Css Components            =
+=============================================*/
+
+
+/**
+ *
+ * Navigation Component
+ *
+ */
+
+nav {
+    width: 100%;
+}
+
+.c-navigation {
+    background: rgba(0, 0, 0, 0.2);
+    height: 70px;
+    display: table;
+    color: #f7f7f7;
+    box-shadow: 0px 0.30em 10px rgba(0, 0, 0, 0.1);
+}
+
+.c-navigation .c-navigation__left {
+    display: table-cell;
+    font-size: 16px;
+    vertical-align: middle;
+    padding: .5rem 1rem;
+}
+
+.c-navigation .c-navigation__right {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    padding: 0 0 0 1rem;
+}
+
+
+/**
+ *
+ * Basket Component
+ *
+ */
+
+.c-basket {
+    position: relative;
+    width: 80px;
+    height: 100%;
+    background: #ED4D46;
+    float: right;
+    text-align: center;
+    border-left: 1px solid #f7f7f7;
+}
+
+.c-basket>i {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+}
+
+.c-basket[data-count]:after {
+    content: attr(data-count);
+    position: absolute;
+    color: #f7f7f7;
+    bottom: -32px;
+    min-width: 40px;
+    max-width: 80px;
+    left: 55%;
+    transform: translateX(-50%);
+    height: auto;
+    font-size: 16px;
+    font-weight: bold;
+    background: #ED4D46;
+    padding: .5rem 0rem;
+    border-bottom: 1px solid #f7f7f7;
+    box-shadow: 0px 0.30em 10px rgba(255, 255, 0, 0.2);
+}
+
+
+/**
+ *
+ * Search Field
+ *
+ */
+
+.c-search-field {
+    width: auto;
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: 20%;
+}
+
+.c-search-field .c-search-field__element input[type="text"] {
+    width: 440px;
+    height: 50px;
+    padding: 1px 20px 0 60px;
+    border-radius: 3px 0 0 3px;
+    border: none;
+    font-size: 17px;
+    border-right: 1px solid #dcdce5;
+    color: #dfdfdf;
+}
+
+.c-search-field:after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f0c8";
+    position: absolute;
+    top: 0;
+    left: 15px;
+    color: #bdbdbd;
+}
+
+.c-search-field button {
+    text-transform: uppercase;
+    border-radius: 0 3px 3px 0;
+    height: 53px;
+    padding: 15px 22px 14px;
+    font-size: 14px;
+    background-color: #424B4F;
+    color: #fff;
+    border: none;
+    text-align: center;
+    margin-left: -4px;
+    font-weight: bold;
+}
+
+
+/*=====  End of App Css Components  ======*/
