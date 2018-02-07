@@ -30,17 +30,19 @@
                 </div>
             </nav>
             <div class="c-search-field">
-                <form action="">
-                    <div class="c-search-field__element">
-                        <input type="text" placeholder="Yemek, Restoran Adı Girniz">
-                        <button>Ara</button>
-                    </div>
-                </form>
+
+                <div class="c-search-field__element">
+                    <input type="text" placeholder="Yemek, Restoran Adı Girniz">
+                    <button id="butt">Ara</button>
+                </div>
+
             </div>
         </header>
         <section>
             <div class="l-content__main">
+                <ul id="searchResult">
 
+                </ul>
             </div>
         </section>
         <footer>
@@ -50,7 +52,13 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
     </div>
-    <script type="text" src="./app/app.js"></script>
+
+    <script src="app/services/pubSub.js"></script>
+    <script src="app/services/jsonParser.js"></script>
+    <script src="app/services/searchService.js"></script>
+    <script src="app/services/basketService.js"></script>
+    <script src="app/components/basketComponent.js"></script>
+    <script src="app/app.js"></script>
 </body>
 
 </html>
