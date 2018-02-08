@@ -4,18 +4,30 @@
 
 @import url("https://use.fontawesome.com/releases/v5.0.6/css/all.css");
 html {
-    height: 100vh;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    height: 100%;
+    min-height: 100%;
+    font-family: "Helvetica Neue", Arial, sans-serif;
     background: #E2E2E2;
+    color: #333;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 html {
     font-size: 1rem;
-}
-
-body {
-    color: #333;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 1em;
 }
 
 h1 {
@@ -45,6 +57,129 @@ h3 {
  :-moz-placeholder {
     /* Firefox 18- */
     color: #bdbdbd;
+}
+
+ul {
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+ul>li {
+    flex: 0 48%;
+    align-self: center;
+    border-bottom: 1px solid #424B4F;
+    flex-wrap: wrap;
+    padding: 1rem 0rem;
+    position: relative;
+}
+
+.searchResult {
+    display: table;
+    position: relative;
+}
+
+.avatar {
+    width: 100px;
+    display: table-cell;
+}
+
+.info {
+    display: table-cell;
+    width: 90%;
+    vertical-align: top;
+    padding: .5rem 1rem;
+}
+
+.info .product-title {
+    font-weight: bold;
+    font-size: 16px;
+    color: #424B4F;
+}
+
+.info .product-detail {
+    line-height: 18px;
+    font-size: 13px;
+    max-height: 55px;
+    padding: .5rem 0rem;
+    width: 70%;
+}
+
+.info .add-product {
+    position: absolute;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    bottom: 5px;
+}
+
+.info .add-product>i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #333;
+    font-size: 1.3em;
+}
+
+.info .add-product>i.fa-plus {
+    right: 0;
+}
+
+.info .add-product>i.fa-minus {
+    left: 0;
+}
+
+.info .add-product>i.fa-plus:hover,
+.info .add-product>i.fa-minus:hover {
+    cursor: pointer;
+    color: #424B4F
+}
+
+.info .add-product>div[data-quantity] {
+    text-align: center;
+    top: 40%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.info .add-product>div[data-quantity]:after {
+    content: attr(data-quantity);
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.info .add-product>button {
+    position: absolute;
+    bottom: 0px;
+    background: #ED4D46;
+    font-weight: bold;
+    color: #f7f7f7;
+    text-transform: uppercase;
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    text-align: center;
+    padding: .5rem 0rem;
+    border: inherit;
+}
+
+.info .add-product>button:hover {
+    cursor: pointer;
+}
+
+footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    max-width: 1440px;
+    margin: auto;
+    background-color: #efefef;
+    text-align: center;
 }
 
 
@@ -78,6 +213,8 @@ header {
     max-width: 1440px;
     width: 100%;
     margin: auto;
+    background: #f7f7f7;
+    height: 100%;
 }
 
 .l-sub-content {
@@ -92,6 +229,7 @@ header {
     background: #f7f7f7;
     padding: .5rem 1rem;
     height: 100%;
+    padding-bottom: 80px;
 }
 
 
@@ -203,21 +341,12 @@ nav {
 .c-search-field .c-search-field__element input[type="text"] {
     width: 440px;
     height: 50px;
-    padding: 1px 20px 0 60px;
+    padding: 1px 20px 0 20px;
     border-radius: 3px 0 0 3px;
     border: none;
     font-size: 17px;
     border-right: 1px solid #dcdce5;
     color: #dfdfdf;
-}
-
-.c-search-field:after {
-    font-family: "Font Awesome 5 Free";
-    content: "\f0c8";
-    position: absolute;
-    top: 0;
-    left: 15px;
-    color: #bdbdbd;
 }
 
 .c-search-field button {
@@ -232,6 +361,24 @@ nav {
     text-align: center;
     margin-left: -4px;
     font-weight: bold;
+}
+
+
+/**
+ *
+ * Error Field
+ *
+ */
+
+.error__input {
+    width: 100%;
+    font-size: 20px;
+    top: 10px;
+    color: #ED4D46;
+    display: block;
+    position: relative;
+    font-weight: bold;
+    display: none;
 }
 
 

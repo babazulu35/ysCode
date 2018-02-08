@@ -5,6 +5,7 @@ var pubSub = {
         this.pubsub[eventName].push(fn);
 
     },
+
     unsubscribe: function(eventName, fn) {
         if (this.pubsub[eventName]) {
             for (var i = 0; i < this.pubsub[eventName].length; i++) {
@@ -15,7 +16,9 @@ var pubSub = {
             };
         }
     },
+
     emit: function(eventName, data) {
+
         if (this.pubsub[eventName]) {
             this.pubsub[eventName].forEach(function(fn) {
                 fn(data);

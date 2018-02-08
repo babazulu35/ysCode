@@ -32,22 +32,70 @@
             <div class="c-search-field">
 
                 <div class="c-search-field__element">
-                    <input type="text" placeholder="Yemek, Restoran Adı Girniz">
-                    <button id="butt">Ara</button>
+                    <input type="text" class="search__product" placeholder="Yemek, Restoran Adı Girniz">
+                    <button class="search__button">Ara</button>
+
                 </div>
+                <span class="error__input">
+                    <i class="fas fa-info"></i> Arama Alanı Boş Olamaz
+                </span>
 
             </div>
         </header>
         <section>
             <div class="l-content__main">
+                <div style="width:100%;text-align:center;font-size:36px;padding:.5rem 0rem;">
+                    <h2>ARAMA SONUCU %SearchResultText%</h2>
+                </div>
+                <hr>
                 <ul id="searchResult">
-
+                    <!--                     <li>
+                        <div class="searchResult">
+                            <div class="avatar">
+                                <img src="https://picsum.photos/g/100/?random" alt="">
+                            </div>
+                            <div class="info">
+                                <span class="product-title">%ProductName%</span>
+                                <div class="product-detail">
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia iusto voluptates hic eveniet tenetur veniam optio soluta dolor,.
+                                </div>
+                                <div class="product-price">
+                                    <span>Fiyatı: %ProductPrice%</span>
+                                </div>
+                                <div class="add-product">
+                                    <i class="fas  fa-minus"></i>
+                                    <div data-quantity="20"></div>
+                                    <i class="fas fa-plus"></i>
+                                    <button class="button">EKLE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="searchResult">
+                            <div class="avatar">
+                                <img src="https://picsum.photos/g/100/?random" alt="">
+                            </div>
+                            <div class="info">
+                                <span class="product-title">%ProductName%</span>
+                                <div class="product-detail">
+                                    %Decription%
+                                </div>
+                                <div class="product-price">
+                                    <span>Fiyatı: %ProductPrice%</span>
+                                </div>
+                                <div class="add-product">
+                                    <i class="fas  fa-minus"></i>
+                                    <div data-quantity="20"></div>
+                                    <i class="fas fa-plus"></i>
+                                    <button class="button">EKLE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li> -->
                 </ul>
             </div>
         </section>
-        <footer>
-            Project Footer
-        </footer>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -57,6 +105,8 @@
     <script src="app/services/jsonParser.js"></script>
     <script src="app/services/searchService.js"></script>
     <script src="app/services/basketService.js"></script>
+    <script src="app/services/UiService.js"></script>
+    <script src="app/services/errorHandlerService.js"></script>
     <script src="app/components/basketComponent.js"></script>
     <script src="app/app.js"></script>
 </body>

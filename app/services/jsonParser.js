@@ -1,5 +1,9 @@
 var jsonParser = (function() {
-
+    /**
+     * 
+     * 
+     * @param {any} callback  
+     */
     var loadJSON = function(callback) {
 
         var xobj = new XMLHttpRequest();
@@ -15,9 +19,10 @@ var jsonParser = (function() {
     }
     var getMenuData = function() {
         loadJSON(function(response) {
+
             pubSub.emit("jsonData", JSON.parse(response));
-            pubSub.emit("searchResult", JSON.parse(response));
         })
+
     }
     return {
         rawData: getMenuData
