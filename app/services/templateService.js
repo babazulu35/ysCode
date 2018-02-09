@@ -2,34 +2,27 @@ var templateService = (function() {
 
 
 
-    var basketMenu = function() {
-        return `        
-                <div id="basket" class="c-basket__container">
-                    <div class="c-basket__container--close">
-                        <i class="fas fa-times fa-2x"></i>
-                    </div>
-                    <ul id="basketItem"></ul>
-                <div>`;
-    }
 
-    var productList = function() {
+    var productList = function(type) {
         return `
-        <li>
-            <div class="searchResult">
-                <div class="avatar">
-                    <img src="https://picsum.photos/g/100/?random" alt="">
-                </div>
-                <div class="info">
-                    <span class="product-title">%ProductName%</span>
-                    <div class="product-detail"> %Description% </div>
-                    <div class="product-price"><span>Fiyatı: %ProductPrice%</span>
+            <li>
+                <div class="searchResult">
+                    <div class="avatar">
+                        <img src="https://picsum.photos/g/100/?random" alt="">
                     </div>
-                    <div class="add-product">
-                        <i class="fas  fa-minus"></i>
-                        <div data-quantity="0"></div><i class="fas fa-plus"></i><button id="%ButtonId%" class="add_to_basket button">EKLE</button></div>
+                    <div class="info">
+                        <span class="product-title">%ProductName%</span>
+                        <div class="product-detail"> %Description% </div>
+                        <div class="product-price"><span>Fiyatı: %ProductPrice%</span>
+                        </div>
+                        <div class="add-product" >
+                        <input min="0" id="q%InputId%" class="quantity" value="%Value%" placeholder="0"  type="number"  />    <button id="%ButtonId%" class="add_to_basket button">%ButonText%</button></div>
+                    </div>
                 </div>
-            </div>
-        </li>`;
+            </li>`;
+
+
+
     }
 
     var searchResultText = function() {
@@ -38,7 +31,6 @@ var templateService = (function() {
 
 
     return {
-        basketMenu: basketMenu,
         productList: productList,
         searchResultText: searchResultText
 

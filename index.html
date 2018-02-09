@@ -24,7 +24,7 @@
                     <h3>Search Food</h3>
                 </div>
                 <div class="c-navigation__right">
-                    <div class="c-basket" data-count="5">
+                    <div class="c-basket" id="c-basket" data-count="0">
                         <i class="fas fa-shopping-basket fa-2x"></i>
                     </div>
                 </div>
@@ -47,67 +47,31 @@
                 </div>
                 <hr>
                 <ul id="searchResult">
-                    <!--                     <li>
-                        <div class="searchResult">
-                            <div class="avatar">
-                                <img src="https://picsum.photos/g/100/?random" alt="">
-                            </div>
-                            <div class="info">
-                                <span class="product-title">%ProductName%</span>
-                                <div class="product-detail">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia iusto voluptates hic eveniet tenetur veniam optio soluta dolor,.
-                                </div>
-                                <div class="product-price">
-                                    <span>Fiyatı: %ProductPrice%</span>
-                                </div>
-                                <div class="add-product">
-                                    <i class="fas  fa-minus"></i>
-                                    <div data-quantity="20"></div>
-                                    <i class="fas fa-plus"></i>
-                                    <button class="button">EKLE</button>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="searchResult">
-                            <div class="avatar">
-                                <img src="https://picsum.photos/g/100/?random" alt="">
-                            </div>
-                            <div class="info">
-                                <span class="product-title">%ProductName%</span>
-                                <div class="product-detail">
-                                    %Decription%
-                                </div>
-                                <div class="product-price">
-                                    <span>Fiyatı: %ProductPrice%</span>
-                                </div>
-                                <div class="add-product">
-                                    <i class="fas  fa-minus"></i>
-                                    <div data-quantity="20"></div>
-                                    <i class="fas fa-plus"></i>
-                                    <button class="button">EKLE</button>
-                                </div>
-                            </div>
-                        </div>
-                    </li> -->
+
                 </ul>
             </div>
         </section>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        <div id="basket" class="c-basket__container">
+            <div class="c-basket__container--close">
+                <i class="fas fa-times fa-2x"></i>
+            </div>
+            <ul id="basketItem"></ul>
+        </div>
 
     </div>
 
     <script src="app/services/pubSub.js"></script>
     <script src="app/services/jsonParser.js"></script>
+    <script src="app/services/UiService.js"></script>
     <script src="app/services/templateService.js"></script>
     <script src="app/services/searchService.js"></script>
     <script src="app/services/basketService.js"></script>
-    <script src="app/services/UiService.js"></script>
+
     <script src="app/services/errorHandlerService.js"></script>
-    <script src="app/components/basketComponent.js"></script>
+
     <script src="app/app.js"></script>
 </body>
 

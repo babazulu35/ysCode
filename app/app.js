@@ -11,10 +11,10 @@
         var searchInput = uiService.getInput();
 
         if (searchInput == '' || searchInput == undefined) {
-            console.log("Empty alanda");
+
             errorHandlerService.inputError();
             pubSub.subscribe('inputError', function(errorTemplate) {
-                console.log("ErroTemplate", errorTemplate);
+
             })
         } else {
             pubSub.emit('searchInputValue', searchInput)
@@ -25,8 +25,19 @@
 
 
     document.querySelector(pageObjects.openBasket).addEventListener('click', function() {
+
         pubSub.emit('basketMenu', 'open');
     });
+    document.querySelector(pageObjects.closeBasket).addEventListener('click', function() {
+        pubSub.emit('basketMenu', 'close');
+    })
+
+    var closeIcon = document.querySelector(pageObjects.closeBasket);
+    if (closeIcon) {
+        closeIcon.addEventListener('click', function() {
+            pubSub.emit('basketMenu', 'close');
+        });
+    }
 
 
     function searchResult(data) {
@@ -37,39 +48,43 @@
             newHtml = html.replace('%ProductName%', data[a].DisplayName);
             newHtml = newHtml.replace('%ProductId%', data[a].ProductId);
             newHtml = newHtml.replace('%ButtonId%', data[a].ProductId);
+            newHtml = newHtml.replace('%InputId%', data[a].ProductId);
             newHtml = newHtml.replace('%Description%', data[a].Description);
-            newHtml = newHtml.replace('%ProductPrice%', data[a].ListPrice)
+            newHtml = newHtml.replace('%ProductPrice%', data[a].ListPrice);
+            newHtml = newHtml.replace('%Value%', 0);
+            newHtml = newHtml.replace('%ButonText%', "EKLE");
             document.getElementById('searchResult').innerHTML += newHtml;
 
 
+
         }
+        var selector = document.querySelectorAll('li .searchResult .add_to_basket')
+        var buttonSet = []
+        for (var i = 0; i < selector.length; i++) {
+            var id = selector[i].id;
+            if (buttonSet.indexOf(id) === -1) {
+                buttonSet.push(id);
+            }
+        }
+        data = buttonSet.filter(function(el, pos) {
+            return buttonSet.indexOf(el) == pos;
+        })
 
-        console.log(document.querySelector('.add-product button'));
+        buttonCatcher(data);
     }
 
+    function getElementValue(id) {
+        var inputs = document.getElementById('q' + id);
+        return inputs.value;
 
-    function items() {
-        console.log("Asdsa");
     }
 
-
-
-
-
-
-
-    /*         document.querySelector('.add_to_basket.button').addEventListener('click', function() {
-                console.log("Clik");
-                console.log("This", this);
-
-                basketService.addToBasket(this.getAttribute('id'));
-
-            }) */
-
-
-
-
-
-
+    function buttonCatcher(data) {
+        for (var i = 0; i < data.length; i++) {
+            document.getElementById(data[i]).addEventListener('click', function() {
+                basketService.addToBasket({ id: this.getAttribute('id'), quantity: getElementValue(this.getAttribute('id')) })
+            });
+        };
+    }
 
 })();

@@ -11,7 +11,6 @@ var pubSub = {
             for (var i = 0; i < this.pubsub[eventName].length; i++) {
                 if (this.pubsub[eventName][i] === fn) {
                     this.pubsub[eventName].splice(i, 1);
-                    console.log("Unsubscribed");
                     break;
                 }
             };

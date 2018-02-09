@@ -46,9 +46,5 @@ var searchService = (function() {
 
     }
 
-    var searchResult = function() {
-
-    }
-
 
 })()
