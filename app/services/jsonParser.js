@@ -19,7 +19,6 @@ var jsonParser = (function() {
     }
     var getMenuData = function() {
         loadJSON(function(response) {
-
             pubSub.emit("jsonData", JSON.parse(response));
         })
 

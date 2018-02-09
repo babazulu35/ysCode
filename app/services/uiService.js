@@ -5,12 +5,16 @@ var uiService = (function() {
 
         searchValue: '.search__product',
         searchButton: '.search__button',
-        addToBasket: '.add_to_basket'
+        addToBasket: '.add_to_basket',
+        openBasket: '.c-basket',
+        closeBasket: '.c-basket-close'
     }
 
     var errorPageObjects = {
         inputError: '.error__input'
     }
+
+
 
 
     return {

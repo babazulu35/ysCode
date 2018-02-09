@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div class="l-container">
+    <div id="l-container" class="l-container">
         <header>
             <nav class="c-navigation">
                 <div class="c-navigation__left">
@@ -36,16 +36,14 @@
                     <button class="search__button">Ara</button>
 
                 </div>
-                <span class="error__input">
-                    <i class="fas fa-info"></i> Arama Alanı Boş Olamaz
-                </span>
+
 
             </div>
         </header>
         <section>
             <div class="l-content__main">
-                <div style="width:100%;text-align:center;font-size:36px;padding:.5rem 0rem;">
-                    <h2>ARAMA SONUCU %SearchResultText%</h2>
+                <div id="searchResultText" class="c-search__result-text">
+
                 </div>
                 <hr>
                 <ul id="searchResult">
@@ -99,10 +97,12 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+
     </div>
 
     <script src="app/services/pubSub.js"></script>
     <script src="app/services/jsonParser.js"></script>
+    <script src="app/services/templateService.js"></script>
     <script src="app/services/searchService.js"></script>
     <script src="app/services/basketService.js"></script>
     <script src="app/services/UiService.js"></script>

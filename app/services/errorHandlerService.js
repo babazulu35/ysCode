@@ -1,12 +1,16 @@
 var errorHandlerService = (function() {
 
+    inputErrorMessage = function() {
+
+        messageTemplate =
+            `<span class="error__input">
+                <i class="fas fa-info"></i> %InputErrorMessage%
+            </span>`;
+    }
 
     return {
         inputError: function() {
-            alert('ss');
-            pubSub.subscribe('inputError', function(message) {
-
-            })
+            return pubSub.emit('inputError', inputErrorMessage.messageTemplate);
         }
     }
 
