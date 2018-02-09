@@ -23,7 +23,6 @@ var searchService = (function() {
             }
 
             pubSub.emit('searchResult', objectSet);
-            pubSub.unsubscribe('searchResult', objectSet);
         })
 
     })
