@@ -5,6 +5,7 @@ var basketService = (function() {
     var products = [];
     var basketQuantity;
     var pageObjects = uiService.getPageObjects();
+    var quertObjects = uiService.getQueryObjects();
 
     /* Bind event */
     pubSub.subscribe('searchResult', searchResultProduct);
@@ -75,6 +76,7 @@ var basketService = (function() {
             newHtml = newHtml.replace('%ButtonId%', products[i].ProductId);
             newHtml = newHtml.replace('%InputId%', products[i].ProductId);
             newHtml = newHtml.replace('%ListId%', products[i].ProductId);
+            newHtml = newHtml.replace('%DeleteId%', products[i].ProductId);
             newHtml = newHtml.replace('%Description%', products[i].Description);
             newHtml = newHtml.replace('%ProductPrice%', (parseInt(products[i].ListPrice) * parseInt(products[i].Quantity)).toFixed(2));
             newHtml = newHtml.replace('%Value%', products[i].Quantity);
@@ -89,24 +91,49 @@ var basketService = (function() {
 
         }
 
-        var queryAllSelector = '#basketItem li .searchResult .add_to_basket';
-        buttondCatcher(uiService.getLoopedElementsId(queryAllSelector));
+        var queryUpdateButton = quertObjects.updateBasketItem;
+        var queryDeleteButton = quertObjects.deletBasketItem;
+        buttonCatcher('update', uiService.getLoopedElementsId(queryUpdateButton), 'qb');
+        buttonCatcher('delete', uiService.getLoopedElementsId(queryDeleteButton), 'l');
 
         // Remove Element From Dow if is Count 0 and Clicked Update
         //document.getElementById("l095ee32e-3ae5-4935-a1e5-2e20356c679d").innerHTML = '';
 
     }
 
-    function buttondCatcher(data) {
-        for (var i = 0; i < data.length; i++) {
-            document.getElementById(data[i]).addEventListener('click', function() {
+    function buttonCatcher(action, data, idPrefix) {
+        switch (action) {
+            case 'add':
+                for (var i = 0; i < data.length; i++) {
+                    document.getElementById(data[i]).addEventListener('click', function() {
 
-                /*                addToBasket({
-                                   id: this.getAttribute('id'),
-                                   quantity: uiService.inputValue('qb' + this.getAttribute('id'))
-                               }) */
-            });
-        };
+                        addToBasket({
+                            id: this.getAttribute('id'),
+                            quantity: uiService.inputValue(idPrefix + this.getAttribute('id'))
+                        })
+                    });
+                };
+                break;
+            case 'update':
+
+                console.log("on update");
+
+                break;
+            case 'delete':
+                for (var i = 0; i < data.length; i++) {
+                    console.log("delete")
+                    document.getElementById(data[i]).addEventListener('click', function() {
+
+                        uiService.removeElementFromDom('l' + this.getAttribute('id'));
+
+                    });
+                };
+                break;
+
+            default:
+                'defualt';
+        }
+
     }
 
     function basketMenu(flag) {
@@ -125,6 +152,9 @@ var basketService = (function() {
     return {
         addToBasket: function(data) {
             addToBasket(data);
+        },
+        buttonCatcher: function(action, data, idPrefix) {
+            buttonCatcher(action, data, idPrefix)
         }
     }
 

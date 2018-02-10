@@ -13,8 +13,8 @@ var searchService = (function() {
 
             for (var i = 0; i < resultPath.length; i++) {
                 for (var a = 0; a < resultPath[i].Products.length; a++) {
-                    var regex = new RegExp(searchData.searchTypeValue, "g");
-                    if (resultPath[i].Products[a].Description.match(regex) !== null || resultPath[i].Products[a].DisplayName.match(regex) !== null) {
+                    var regex = new RegExp(searchData.searchTypeValue.toLowerCase(), "g");
+                    if (resultPath[i].Products[a].Description.toLowerCase().match(regex) !== null || resultPath[i].Products[a].DisplayName.toLowerCase().match(regex) !== null) {
                         objectSet.push(resultPath[i].Products[a]);
                         break;
                     }

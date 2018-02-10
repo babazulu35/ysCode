@@ -4,6 +4,7 @@
      * @description call pageObjects set
      */
     var pageObjects = uiService.getPageObjects();
+    var queryObjects = uiService.getQueryObjects();
 
     /**
      * @event bind searchResult
@@ -53,21 +54,9 @@
             document.getElementById('searchResult').innerHTML += newHtml;
         }
 
-        var queryAllSelector = '#searchResult li .searchResult .add_to_basket';
-        buttonCatcher(uiService.getLoopedElementsId(queryAllSelector));
+        var addToBasket = queryObjects.addToBasket;
+        basketService.buttonCatcher('add', uiService.getLoopedElementsId(addToBasket), 'q')
 
-    }
-
-    function buttonCatcher(data) {
-
-        for (var i = 0; i < data.length; i++) {
-            document.getElementById(data[i]).addEventListener('click', function() {
-                basketService.addToBasket({
-                    id: this.getAttribute('id'),
-                    quantity: uiService.inputValue('q' + this.getAttribute('id'))
-                })
-            });
-        };
     }
 
 })();

@@ -12,6 +12,12 @@ var uiService = (function() {
         closeBasket: '.c-basket__container--close'
     }
 
+    var queryObjects = {
+        addToBasket: '#searchResult li .searchResult .add_to_basket',
+        updateBasketItem: '#basketItem li .searchResult .add_to_basket',
+        deletBasketItem: '#basketItem li .searchResult .delete_basket_item'
+    }
+
     /**
      * @private
      */
@@ -105,6 +111,10 @@ var uiService = (function() {
 
         inputValue: function(elementId) {
             return getInputValue(elementId)
+        },
+
+        getQueryObjects: function() {
+            return queryObjects;
         }
 
 
