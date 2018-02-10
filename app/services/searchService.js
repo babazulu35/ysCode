@@ -2,14 +2,21 @@ var searchService = (function() {
 
     var data = jsonParser.rawData();
 
-
+    /**
+     * @param {*} data emited JsonData event
+     */
     pubSub.subscribe('jsonData', function(data) {
+
+        /**
+         * @param {*} searchData emited input search value  event
+         */
+
         pubSub.subscribe('searchInputValue', function(searchData) {
             var objectSet = [];
             var resultPath = data.d.ResultSet || '';
 
             beforeEach();
-            searchResultText(searchData.searchTypeValue);
+
 
             for (var i = 0; i < resultPath.length; i++) {
                 for (var a = 0; a < resultPath[i].Products.length; a++) {
@@ -21,25 +28,43 @@ var searchService = (function() {
 
                 }
             }
+            searchResultText(searchData.searchTypeValue, objectSet.length);
 
             pubSub.emit('searchResult', objectSet);
         })
 
     })
 
+    /**
+     * @return clearDom Function
+     */
+
     var beforeEach = function() {
         clearDom('searchResult');
         clearDom('searchResultText');
     }
 
+    /**
+     * 
+     * @param {*} id DOM's added id
+     * @description clear added dom elements from DOM
+     */
+
     var clearDom = function(id) {
         document.getElementById(id).innerHTML = '';
     }
 
-    var searchResultText = function(searchValue) {
+    /**
+     * 
+     * @param {*} searchValue searchValue from input
+     * @param {*} resultCount count of Search Result Length
+     */
+
+    var searchResultText = function(searchValue, resultCount) {
 
         var resultText = templateService.searchResultText();
         var resultTextNew = resultText.replace('%SearchResultText%', searchValue);
+        var resultTextNew = resultTextNew.replace('%ResultCount%', resultCount);
         var element = document.getElementById('searchResultText');
         element.insertAdjacentHTML('afterbegin', resultTextNew);
 

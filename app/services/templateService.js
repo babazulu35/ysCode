@@ -1,9 +1,11 @@
 var templateService = (function() {
 
 
+    var emptyResult = function() {
+        return `<i id="emptyResult" class="fab fa-searchengin fa-9x"></i>`;
+    }
 
-
-    var productList = function(type) {
+    var productList = function() {
         return `
             <li id="l%ListId%">
                 <div class="searchResult">
@@ -24,7 +26,7 @@ var templateService = (function() {
 
 
     }
-    var productList2 = function(type) {
+    var productList2 = function() {
         return `
             <li id="bl%ListId%">
                 <div class="searchResult">
@@ -47,14 +49,15 @@ var templateService = (function() {
     }
 
     var searchResultText = function() {
-        return `<h2> <span>%SearchResultText% </span>Araması ile ilgil Sonuçlar</h2>`;
+        return `<h2> <span>%SearchResultText% </span>araması ile ilgil <span style="color:#AEBD38">%ResultCount%</span> sonuç bulundu</h2>`;
     }
 
 
     return {
         productList: productList,
         productList2: productList2,
-        searchResultText: searchResultText
+        searchResultText: searchResultText,
+        emptyResult: emptyResult
 
     }
 

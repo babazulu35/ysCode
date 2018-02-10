@@ -32,7 +32,7 @@ var basketService = (function() {
                     var found = products.find(function(result) { return result.ProductId == resultItem[a][i].ProductId });
 
                     if (found) {
-                        if (found.Quantity !== basketQuantity) {
+                        if (found.Quantity !== currentQuantity) {
                             /**
                              * @param  {} found.ProductId updateId
                              * @param  {} found.Quantity new Quantity value
@@ -111,7 +111,7 @@ var basketService = (function() {
             newHtml = newHtml.replace('%Value%', products[i].Quantity);
             newHtml = newHtml.replace('%ButonText%', "GÜNCELLE");
 
-            basketQuantity = products[i].Quantity;
+            currentQuantity = products[i].Quantity;
             document.getElementById('basketItem').innerHTML += newHtml;
 
         }

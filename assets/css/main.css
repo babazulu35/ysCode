@@ -453,5 +453,13 @@ nav {
     display: none;
 }
 
+#emptyResult.fab,
+#emptyResult.fas {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    color: #dddd;
+}
+
 
 /*=====  End of App Css Components  ======*/

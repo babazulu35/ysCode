@@ -15,13 +15,8 @@
 
     document.querySelector(pageObjects.searchButton).addEventListener('click', function() {
         var searchInput = uiService.getSearchInput();
-
-        if (searchInput == '' || searchInput == undefined) {
-
-            errorHandlerService.inputError();
-            pubSub.subscribe('inputError', function(errorTemplate) {
-
-            })
+        if (searchInput.searchTypeValue == '' || searchInput.searchTypeValue == undefined) {
+            alert('Lütfen Aramak istediğinizi ürünün adını giriniz!');
         } else {
             pubSub.emit('searchInputValue', searchInput)
         }
@@ -38,6 +33,11 @@
 
     function searchResult(data) {
         var html, newHtml;
+
+        if (data == '') {
+            var resultField = document.getElementById('searchResult');
+            resultField.insertAdjacentHTML('beforeend', templateService.emptyResult());
+        }
 
         html = templateService.productList();
 

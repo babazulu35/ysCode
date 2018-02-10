@@ -1,9 +1,10 @@
 var jsonParser = (function() {
+
     /**
-     * 
-     * 
-     * @param {any} callback  
+     * @private
+     * @param {any} callback add object responseText to callBck 
      */
+
     var loadJSON = function(callback) {
 
         var xobj = new XMLHttpRequest();
@@ -17,13 +18,26 @@ var jsonParser = (function() {
         };
         xobj.send(null);
     }
+
+    /**
+     * @private
+     */
+
     var getMenuData = function() {
+
+        /**
+         * @param {*} response callback data from loadJson function
+         */
         loadJSON(function(response) {
             pubSub.emit("jsonData", JSON.parse(response));
         })
 
     }
     return {
+
+        /**
+         * @public
+         */
         rawData: getMenuData
     }
 

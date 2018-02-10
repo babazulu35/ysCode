@@ -1,10 +1,19 @@
 var pubSub = {
     pubsub: {},
+
+    /**
+     * @description subscriber to emited event 
+     */
+
     subscribe: function(eventName, fn) {
         this.pubsub[eventName] = this.pubsub[eventName] || [];
         this.pubsub[eventName].push(fn);
 
     },
+
+    /**
+     * @description unsubscribe to subscribed event 
+     */
 
     unsubscribe: function(eventName, fn) {
         if (this.pubsub[eventName]) {
@@ -17,6 +26,10 @@ var pubSub = {
 
         }
     },
+
+    /**
+     * @description publish events
+     */
 
     emit: function(eventName, data) {
 

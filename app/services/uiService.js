@@ -28,6 +28,7 @@ var uiService = (function() {
     /**
      * @private
      * @returns querySelectorAll DOM Nodes Object
+     * @param {*} querySelectorAll is querySelector path ex. #id .thisClass tagName
      */
 
     getLoopedElementsId = function(querySelectorAll) {
