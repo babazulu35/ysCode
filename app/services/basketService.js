@@ -14,18 +14,15 @@ var basketService = (function() {
 
 
     function searchResultProduct(product) {
-
         resultItem.push(product);
     }
-    /**
-     * @param  {} emitedBasketProduct
-     */
+
+
     function basketEmitData(emitedBasketProduct) {
         addedItem = emitedBasketProduct;
     }
 
     var addToBasket = function(data) {
-        console.log("Ad basket data", data);
         for (var a = 0; a < resultItem.length; a++) {
             for (var i = 0; i < resultItem[a].length; i++) {
 
@@ -36,9 +33,11 @@ var basketService = (function() {
 
                     if (found) {
                         if (found.Quantity !== basketQuantity) {
-
-                            /* Ürün aded güncellemesi Gelecek */
-                            pubSub.emit('basketProductUpdate', found);
+                            /**
+                             * @param  {} found.ProductId updateId
+                             * @param  {} found.Quantity new Quantity value
+                             */
+                            updateBasketItem(found.ProductId, found.Quantity);
 
                         } else {
                             continue;
@@ -53,22 +52,52 @@ var basketService = (function() {
             }
         }
     }
+    var updateBasketItem = function(updateThisData, updateData) {
+
+        var updatedBasketItem = products;
+        updatedBasketItem.Updated = true;
+
+        for (var i = 0; i < updatedBasketItem.length; i++) {
+            if (updatedBasketItem[i].ProductId == updateThisData) {
+                updatedBasketItem[i].Quantity = updateData;
+            }
+        }
+
+        pubSub.emit('basketProducts', updatedBasketItem);
+
+
+    }
+
+    var deleteBasketItem = function(data, itemId) {
+        var basketList = data;
+        basketList.Updated = true;
+
+        for (var i = 0; i < basketList.length; i++) {
+            if (basketList[i].ProductId == itemId) {
+                basketList.splice(i, 1);
+
+            }
+        }
+        //products = [];
+        pubSub.emit('basketProducts', basketList);
+
+    }
 
     function basketProducts(addedProducts) {
-        products.push(addedProducts);
-        /*         pubSub.subscribe('basketProductUpdate', function(data) {
-                    console.log("There is a Update", data);
-                    var indexI = products.find(function(result) { result.ProductId === data.ProductId });
-                    products.push(data);
-                }) */
-
-        console.log(products);
         var html, newHtml;
-        html = templateService.productList2();
-
         var countViewSelector = document.getElementById('c-basket');
 
+        if (addedProducts.Updated === true) {
+            delete addedProducts.Updated;
+            products = addedProducts;
+        } else {
+            products.push(addedProducts);
+        }
+
+        html = templateService.productList2();
+
         document.getElementById('basketItem').innerHTML = '';
+        countViewSelector.dataset.count = products.length;
 
         for (var i = 0; i < products.length; i++) {
             newHtml = html.replace('%ProductName%', products[i].DisplayName);
@@ -85,28 +114,20 @@ var basketService = (function() {
             basketQuantity = products[i].Quantity;
             document.getElementById('basketItem').innerHTML += newHtml;
 
-
-
-            countViewSelector.dataset.count = products.length;
-
         }
 
         var queryUpdateButton = quertObjects.updateBasketItem;
         var queryDeleteButton = quertObjects.deletBasketItem;
-        buttonCatcher('update', uiService.getLoopedElementsId(queryUpdateButton), 'qb');
-        buttonCatcher('delete', uiService.getLoopedElementsId(queryDeleteButton), 'l');
-
-        // Remove Element From Dow if is Count 0 and Clicked Update
-        //document.getElementById("l095ee32e-3ae5-4935-a1e5-2e20356c679d").innerHTML = '';
+        buttonCatchListener('update', uiService.getLoopedElementsId(queryUpdateButton), 'b');
+        buttonCatchListener('delete', uiService.getLoopedElementsId(queryDeleteButton), 'del');
 
     }
 
-    function buttonCatcher(action, data, idPrefix) {
+    function buttonCatchListener(action, data, idPrefix) {
         switch (action) {
             case 'add':
                 for (var i = 0; i < data.length; i++) {
                     document.getElementById(data[i]).addEventListener('click', function() {
-
                         addToBasket({
                             id: this.getAttribute('id'),
                             quantity: uiService.inputValue(idPrefix + this.getAttribute('id'))
@@ -115,25 +136,32 @@ var basketService = (function() {
                 };
                 break;
             case 'update':
+                for (var i = 0; i < data.length; i++) {
 
-                console.log("on update");
+                    document.getElementById(data[i]).addEventListener('click', function() {
 
+                        var selectedId = removePrefixer(idPrefix, this.getAttribute('id'));
+
+                        updateBasketItem(selectedId, uiService.inputValue('inp' + selectedId));
+                    });
+                }
                 break;
             case 'delete':
                 for (var i = 0; i < data.length; i++) {
-                    console.log("delete")
                     document.getElementById(data[i]).addEventListener('click', function() {
-
-                        uiService.removeElementFromDom('l' + this.getAttribute('id'));
+                        var selectedId = removePrefixer(idPrefix, this.getAttribute('id'));
+                        deleteBasketItem(products, selectedId);
 
                     });
                 };
                 break;
-
             default:
-                'defualt';
+                'default';
         }
+    }
 
+    function removePrefixer(prefixer, data) {
+        return data.slice(prefixer.length);
     }
 
     function basketMenu(flag) {
@@ -153,8 +181,11 @@ var basketService = (function() {
         addToBasket: function(data) {
             addToBasket(data);
         },
-        buttonCatcher: function(action, data, idPrefix) {
-            buttonCatcher(action, data, idPrefix)
+        buttonCatchListener: function(action, data, idPrefix) {
+            buttonCatchListener(action, data, idPrefix)
+        },
+        checkIfisExist: function(productId) {
+            checkIfisExist(productId)
         }
     }
 

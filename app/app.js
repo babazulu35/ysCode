@@ -52,10 +52,11 @@
             newHtml = newHtml.replace('%Value%', 0);
             newHtml = newHtml.replace('%ButonText%', "EKLE");
             document.getElementById('searchResult').innerHTML += newHtml;
+
         }
 
         var addToBasket = queryObjects.addToBasket;
-        basketService.buttonCatcher('add', uiService.getLoopedElementsId(addToBasket), 'q')
+        basketService.buttonCatchListener('add', uiService.getLoopedElementsId(addToBasket), 'q')
 
     }
 

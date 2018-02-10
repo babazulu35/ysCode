@@ -26,7 +26,7 @@ var templateService = (function() {
     }
     var productList2 = function(type) {
         return `
-            <li id="l%ListId%">
+            <li id="bl%ListId%">
                 <div class="searchResult">
                     <div class="avatar">
                         <img src="https://picsum.photos/g/100/?random" alt="">
@@ -37,7 +37,7 @@ var templateService = (function() {
                         <div class="product-price"><span>Fiyatı: %ProductPrice%</span>
                         </div>
                         <div class="add-product" >
-                        <input min="0" id="qb%InputId%" class="quantity" value="%Value%" placeholder="0"  type="number"  />    <button id="b%ButtonId%" class="add_to_basket button">%ButonText%</button><i id="%DeleteId%" class="far fa-trash-alt delete_basket_item"></i></div>
+                        <input min="0" id="inp%InputId%" class="quantity" value="%Value%" placeholder="0"  type="number"  />    <button id="b%ButtonId%" class="add_to_basket button">%ButonText%</button><i id="del%DeleteId%" class="far fa-trash-alt delete_basket_item"></i></div>
                     </div>
                 </div>
             </li>`;
