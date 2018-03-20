@@ -1,6 +1,7 @@
-### Proje Kurulumu
- 
--- JSON datayı Request ile almak için araya ufak bir express server eklendi o bakımdan bir npm install gerekebilir.
+### Project Setup
+
+-- VanillaJS
+ -- Simple  Product Search from JSON , Inc. Dec , AddtoBasket Update Basket methods,
 
 `npm install`
 ` npm start `
